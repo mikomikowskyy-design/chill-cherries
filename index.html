@@ -1,0 +1,1660 @@
+<!DOCTYPE html>
+<html lang="pl">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>Chill Cherries 🍒</title>
+
+<style>
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap');
+
+:root {
+    --bg: #07070b;
+    --card: rgba(255,255,255,.045);
+    --card-hover: rgba(255,255,255,.075);
+    --border: rgba(255,255,255,.09);
+    --text: #ffffff;
+    --muted: #8b8997;
+    --red: #ff315d;
+    --purple: #9b5cff;
+    --blue: #38bdf8;
+    --green: #35dc91;
+    --yellow: #f6c453;
+}
+
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+html {
+    scroll-behavior: smooth;
+}
+
+body {
+    font-family: 'Inter', sans-serif;
+    color: var(--text);
+    background:
+        radial-gradient(circle at 10% 5%, rgba(255,49,93,.13), transparent 28%),
+        radial-gradient(circle at 90% 15%, rgba(155,92,255,.13), transparent 30%),
+        radial-gradient(circle at 50% 100%, rgba(56,189,248,.07), transparent 32%),
+        var(--bg);
+    min-height: 100vh;
+    overflow-x: hidden;
+}
+
+/* =========================
+   TŁO
+========================= */
+
+body::before {
+    content: "";
+    position: fixed;
+    inset: 0;
+    pointer-events: none;
+    z-index: -3;
+
+    background-image:
+        linear-gradient(rgba(255,255,255,.025) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(255,255,255,.025) 1px, transparent 1px);
+
+    background-size: 55px 55px;
+    animation: gridMove 25s linear infinite;
+}
+
+body::after {
+    content: "";
+    position: fixed;
+    width: 500px;
+    height: 500px;
+    border-radius: 50%;
+    background: rgba(255,49,93,.07);
+    filter: blur(120px);
+    left: -180px;
+    top: -180px;
+    pointer-events: none;
+    z-index: -2;
+    animation: backgroundFloat 10s ease-in-out infinite alternate;
+}
+
+@keyframes gridMove {
+    from {
+        transform: translateY(0);
+    }
+
+    to {
+        transform: translateY(55px);
+    }
+}
+
+@keyframes backgroundFloat {
+    from {
+        transform: translate(0,0) scale(1);
+    }
+
+    to {
+        transform: translate(220px,150px) scale(1.25);
+    }
+}
+
+/* =========================
+   HEADER
+========================= */
+
+header {
+    position: relative;
+    text-align: center;
+    padding: 85px 20px 65px;
+    overflow: hidden;
+    border-bottom: 1px solid var(--border);
+}
+
+.header-glow {
+    position: absolute;
+    width: 650px;
+    height: 220px;
+    left: 50%;
+    top: -130px;
+    transform: translateX(-50%);
+    background: linear-gradient(
+        90deg,
+        transparent,
+        rgba(255,49,93,.25),
+        rgba(155,92,255,.25),
+        rgba(56,189,248,.15),
+        transparent
+    );
+    filter: blur(55px);
+    animation: headerGlow 6s ease-in-out infinite alternate;
+}
+
+@keyframes headerGlow {
+    from {
+        opacity: .35;
+        transform: translateX(-50%) scaleX(.8);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateX(-50%) scaleX(1.2);
+    }
+}
+
+.logo {
+    position: relative;
+    display: inline-block;
+    font-size: clamp(40px, 8vw, 78px);
+    font-weight: 900;
+    letter-spacing: -4px;
+
+    background: linear-gradient(
+        90deg,
+        var(--red),
+        #ff6588,
+        var(--purple),
+        var(--blue),
+        var(--red)
+    );
+
+    background-size: 300% auto;
+    -webkit-background-clip: text;
+    background-clip: text;
+    color: transparent;
+
+    animation:
+        logoGradient 6s linear infinite,
+        logoAppear .8s ease;
+}
+
+@keyframes logoGradient {
+    to {
+        background-position: 300% center;
+    }
+}
+
+@keyframes logoAppear {
+    from {
+        opacity: 0;
+        transform: translateY(-25px) scale(.9);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateY(0) scale(1);
+    }
+}
+
+.subtitle {
+    position: relative;
+    margin-top: 14px;
+    color: var(--muted);
+    font-size: 13px;
+    letter-spacing: 4px;
+    text-transform: uppercase;
+    animation: fadeUp .8s .2s both;
+}
+
+@keyframes fadeUp {
+    from {
+        opacity: 0;
+        transform: translateY(15px);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+/* =========================
+   NAV
+========================= */
+
+nav {
+    position: sticky;
+    top: 0;
+    z-index: 100;
+
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+    gap: 9px;
+
+    padding: 16px;
+
+    background: rgba(7,7,11,.78);
+    backdrop-filter: blur(22px);
+    -webkit-backdrop-filter: blur(22px);
+
+    border-bottom: 1px solid rgba(255,255,255,.06);
+}
+
+.nav-btn {
+    position: relative;
+    overflow: hidden;
+
+    border: 1px solid rgba(255,255,255,.08);
+    background: rgba(255,255,255,.035);
+
+    color: var(--muted);
+
+    padding: 11px 18px;
+    border-radius: 11px;
+
+    cursor: pointer;
+
+    font-family: inherit;
+    font-size: 12px;
+    font-weight: 800;
+
+    transition:
+        transform .25s ease,
+        color .25s ease,
+        background .25s ease,
+        border-color .25s ease,
+        box-shadow .25s ease;
+}
+
+.nav-btn::before {
+    content: "";
+    position: absolute;
+    inset: 0;
+
+    background: linear-gradient(
+        110deg,
+        transparent,
+        rgba(255,255,255,.15),
+        transparent
+    );
+
+    transform: translateX(-120%);
+    transition: .5s;
+}
+
+.nav-btn:hover::before {
+    transform: translateX(120%);
+}
+
+.nav-btn:hover {
+    color: #fff;
+    transform: translateY(-2px);
+    border-color: rgba(255,49,93,.4);
+}
+
+.nav-btn.active {
+    color: white;
+
+    background:
+        linear-gradient(
+            135deg,
+            rgba(255,49,93,.18),
+            rgba(155,92,255,.15)
+        );
+
+    border-color: rgba(255,49,93,.45);
+
+    box-shadow:
+        0 0 25px rgba(255,49,93,.12),
+        inset 0 0 20px rgba(255,255,255,.025);
+}
+
+/* =========================
+   MAIN
+========================= */
+
+main {
+    max-width: 1180px;
+    margin: auto;
+    padding: 50px 20px 90px;
+}
+
+.tab {
+    display: none;
+}
+
+.tab.active {
+    display: block;
+    animation: tabEnter .45s ease;
+}
+
+@keyframes tabEnter {
+    from {
+        opacity: 0;
+        transform: translateY(18px);
+        filter: blur(4px);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateY(0);
+        filter: blur(0);
+    }
+}
+
+.section-title {
+    text-align: center;
+    font-size: clamp(28px, 5vw, 38px);
+    font-weight: 900;
+    letter-spacing: -1.5px;
+}
+
+.section-title span {
+    background: linear-gradient(
+        90deg,
+        var(--red),
+        var(--purple),
+        var(--blue)
+    );
+
+    -webkit-background-clip: text;
+    background-clip: text;
+    color: transparent;
+}
+
+.section-description {
+    text-align: center;
+    color: var(--muted);
+    font-size: 13px;
+    margin-top: 9px;
+    margin-bottom: 38px;
+}
+
+/* =========================
+   STATYSTYKI
+========================= */
+
+.stats {
+    display: grid;
+    grid-template-columns: repeat(3,1fr);
+    gap: 16px;
+    margin-bottom: 35px;
+}
+
+.stat {
+    position: relative;
+    overflow: hidden;
+
+    padding: 25px 20px;
+
+    text-align: center;
+
+    border-radius: 18px;
+
+    background: var(--card);
+    border: 1px solid var(--border);
+
+    transition:
+        transform .3s ease,
+        border-color .3s ease,
+        background .3s ease;
+}
+
+.stat:hover {
+    transform: translateY(-6px);
+    background: var(--card-hover);
+    border-color: rgba(255,255,255,.17);
+}
+
+.stat::after {
+    content: "";
+    position: absolute;
+
+    width: 120px;
+    height: 120px;
+
+    border-radius: 50%;
+
+    right: -65px;
+    top: -65px;
+
+    background: var(--accent);
+    filter: blur(40px);
+    opacity: .18;
+}
+
+.stat:nth-child(1) {
+    --accent: var(--blue);
+}
+
+.stat:nth-child(2) {
+    --accent: var(--green);
+}
+
+.stat:nth-child(3) {
+    --accent: var(--red);
+}
+
+.stat-number {
+    position: relative;
+    z-index: 1;
+
+    font-size: 38px;
+    font-weight: 900;
+}
+
+.stat-label {
+    position: relative;
+    z-index: 1;
+
+    margin-top: 5px;
+
+    color: var(--muted);
+
+    font-size: 10px;
+    font-weight: 800;
+
+    letter-spacing: 2px;
+    text-transform: uppercase;
+}
+
+/* =========================
+   MECZE
+========================= */
+
+.matches {
+    display: flex;
+    flex-direction: column;
+    gap: 13px;
+}
+
+.match {
+    position: relative;
+
+    display: grid;
+    grid-template-columns: 125px 1fr auto;
+    align-items: center;
+
+    gap: 20px;
+
+    padding: 19px 22px;
+
+    border-radius: 16px;
+
+    background: var(--card);
+    border: 1px solid rgba(255,255,255,.075);
+
+    overflow: hidden;
+
+    transition:
+        transform .3s ease,
+        background .3s ease,
+        border-color .3s ease;
+
+    animation: matchIn .55s both;
+}
+
+.match::before {
+    content: "";
+
+    position: absolute;
+    left: 0;
+    top: 0;
+    bottom: 0;
+
+    width: 3px;
+
+    background: linear-gradient(
+        180deg,
+        var(--red),
+        var(--purple),
+        var(--blue)
+    );
+}
+
+.match:hover {
+    transform: translateX(5px);
+    background: var(--card-hover);
+    border-color: rgba(255,255,255,.14);
+}
+
+@keyframes matchIn {
+    from {
+        opacity: 0;
+        transform: translateX(-20px);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateX(0);
+    }
+}
+
+.match-date {
+    color: #777583;
+    font-size: 12px;
+    font-weight: 600;
+}
+
+.match-opponent {
+    font-size: 16px;
+    font-weight: 800;
+}
+
+.vs {
+    color: #55535f;
+    margin: 0 6px;
+    font-weight: 500;
+}
+
+.match-result {
+    text-align: right;
+    font-size: 18px;
+    font-weight: 900;
+}
+
+.result-label {
+    margin-top: 3px;
+    font-size: 9px;
+    letter-spacing: 1.5px;
+    opacity: .65;
+}
+
+.win {
+    color: var(--green);
+    text-shadow: 0 0 18px rgba(53,220,145,.3);
+}
+
+.loss {
+    color: var(--red);
+    text-shadow: 0 0 18px rgba(255,49,93,.3);
+}
+
+.waiting {
+    color: var(--yellow);
+}
+
+.empty {
+    padding: 35px;
+    text-align: center;
+    color: var(--muted);
+    border: 1px dashed rgba(255,255,255,.1);
+    border-radius: 16px;
+}
+
+/* =========================
+   SKŁAD
+========================= */
+
+.players {
+    display: grid;
+    grid-template-columns: repeat(5,1fr);
+    gap: 14px;
+}
+
+.player-card {
+    position: relative;
+    overflow: hidden;
+
+    min-height: 220px;
+
+    padding: 22px 18px;
+
+    border-radius: 20px;
+
+    background:
+        linear-gradient(
+            145deg,
+            rgba(255,255,255,.065),
+            rgba(255,255,255,.018)
+        );
+
+    border: 1px solid rgba(255,255,255,.08);
+
+    transition:
+        transform .35s cubic-bezier(.2,.8,.2,1),
+        border-color .35s ease,
+        box-shadow .35s ease;
+
+    animation: playerIn .6s both;
+}
+
+.player-card::before {
+    content: "";
+
+    position: absolute;
+
+    width: 150px;
+    height: 150px;
+
+    border-radius: 50%;
+
+    right: -75px;
+    top: -75px;
+
+    background: var(--accent);
+    filter: blur(40px);
+
+    opacity: .11;
+
+    transition: .4s;
+}
+
+.player-card::after {
+    content: "";
+
+    position: absolute;
+
+    left: -100%;
+    bottom: 0;
+
+    width: 100%;
+    height: 2px;
+
+    background: linear-gradient(
+        90deg,
+        transparent,
+        var(--accent),
+        transparent
+    );
+
+    transition: .5s;
+}
+
+.player-card:hover {
+    transform: translateY(-8px) scale(1.015);
+
+    border-color: var(--accent);
+
+    box-shadow:
+        0 20px 45px rgba(0,0,0,.35),
+        0 0 25px rgba(255,255,255,.03);
+}
+
+.player-card:hover::before {
+    opacity: .22;
+    transform: scale(1.4);
+}
+
+.player-card:hover::after {
+    left: 100%;
+}
+
+@keyframes playerIn {
+    from {
+        opacity: 0;
+        transform: translateY(25px) scale(.96);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateY(0) scale(1);
+    }
+}
+
+.role {
+    position: relative;
+
+    display: inline-block;
+
+    color: var(--accent);
+
+    font-size: 9px;
+    font-weight: 900;
+
+    letter-spacing: 2px;
+    text-transform: uppercase;
+
+    margin-bottom: 25px;
+}
+
+.player-icon {
+    position: relative;
+
+    width: 54px;
+    height: 54px;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    border-radius: 15px;
+
+    background: rgba(255,255,255,.045);
+    border: 1px solid rgba(255,255,255,.08);
+
+    font-size: 24px;
+
+    margin-bottom: 17px;
+
+    transition: .35s;
+}
+
+.player-card:hover .player-icon {
+    transform: rotate(-5deg) scale(1.08);
+}
+
+.player-name {
+    position: relative;
+
+    font-size: 15px;
+    font-weight: 800;
+
+    word-break: break-word;
+}
+
+.player-status {
+    position: relative;
+
+    margin-top: 8px;
+
+    color: #6f6d79;
+
+    font-size: 10px;
+}
+
+/* =========================
+   TRENERZY
+========================= */
+
+.coaches {
+    max-width: 760px;
+    margin: auto;
+
+    display: grid;
+    grid-template-columns: repeat(2,1fr);
+    gap: 18px;
+}
+
+.coach-card {
+    position: relative;
+    overflow: hidden;
+
+    padding: 30px;
+
+    border-radius: 22px;
+
+    background:
+        linear-gradient(
+            145deg,
+            rgba(155,92,255,.12),
+            rgba(255,255,255,.025)
+        );
+
+    border: 1px solid rgba(155,92,255,.18);
+
+    transition: .35s;
+}
+
+.coach-card:nth-child(2) {
+    background:
+        linear-gradient(
+            145deg,
+            rgba(255,193,7,.09),
+            rgba(255,255,255,.025)
+        );
+
+    border-color: rgba(246,196,83,.18);
+}
+
+.coach-card:hover {
+    transform: translateY(-7px);
+    border-color: rgba(155,92,255,.55);
+    box-shadow: 0 18px 45px rgba(0,0,0,.35);
+}
+
+.coach-card:nth-child(2):hover {
+    border-color: rgba(246,196,83,.55);
+}
+
+.coach-icon {
+    font-size: 34px;
+    margin-bottom: 18px;
+}
+
+.coach-role {
+    color: #a78bfa;
+
+    font-size: 10px;
+    font-weight: 900;
+
+    letter-spacing: 2px;
+    text-transform: uppercase;
+}
+
+.coach-card:nth-child(2) .coach-role {
+    color: var(--yellow);
+}
+
+.coach-name {
+    margin-top: 8px;
+
+    font-size: 23px;
+    font-weight: 900;
+}
+
+/* =========================
+   GABLOTA
+========================= */
+
+.trophy-room {
+    position: relative;
+    overflow: hidden;
+
+    max-width: 850px;
+    margin: auto;
+
+    padding: 70px 25px;
+
+    text-align: center;
+
+    border-radius: 28px;
+
+    background:
+        radial-gradient(
+            circle at center,
+            rgba(246,196,83,.09),
+            transparent 48%
+        ),
+        rgba(255,255,255,.025);
+
+    border: 1px solid rgba(246,196,83,.15);
+}
+
+.trophy-room::before {
+    content: "";
+
+    position: absolute;
+    inset: 14px;
+
+    border: 1px solid rgba(246,196,83,.06);
+    border-radius: 20px;
+
+    pointer-events: none;
+}
+
+.trophy {
+    position: relative;
+
+    display: inline-block;
+
+    font-size: 82px;
+
+    filter: drop-shadow(
+        0 0 25px rgba(246,196,83,.3)
+    );
+
+    animation: trophyFloat 3s ease-in-out infinite;
+}
+
+@keyframes trophyFloat {
+    0%,100% {
+        transform: translateY(0) rotate(-2deg);
+    }
+
+    50% {
+        transform: translateY(-12px) rotate(2deg);
+    }
+}
+
+.trophy-title {
+    position: relative;
+
+    margin-top: 20px;
+
+    font-size: 28px;
+    font-weight: 900;
+}
+
+.trophy-text {
+    position: relative;
+
+    margin-top: 9px;
+
+    color: var(--muted);
+    font-size: 13px;
+}
+
+.empty-trophy {
+    position: relative;
+
+    display: inline-block;
+
+    margin-top: 25px;
+
+    padding: 9px 16px;
+
+    border-radius: 999px;
+
+    color: var(--yellow);
+
+    background: rgba(246,196,83,.07);
+    border: 1px solid rgba(246,196,83,.14);
+
+    font-size: 9px;
+    font-weight: 900;
+
+    letter-spacing: 1.5px;
+    text-transform: uppercase;
+}
+
+/* =========================
+   FOOTER
+========================= */
+
+footer {
+    padding: 28px 20px;
+
+    text-align: center;
+
+    color: #55535f;
+
+    font-size: 11px;
+
+    border-top: 1px solid rgba(255,255,255,.06);
+}
+
+.footer-cherry {
+    display: inline-block;
+    margin-left: 3px;
+
+    animation: cherryPulse 2s ease-in-out infinite;
+}
+
+@keyframes cherryPulse {
+    0%,100% {
+        transform: scale(1);
+    }
+
+    50% {
+        transform: scale(1.22);
+    }
+}
+
+/* =========================
+   RESPONSIVE
+========================= */
+
+@media (max-width: 1000px) {
+
+    .players {
+        grid-template-columns: repeat(3,1fr);
+    }
+}
+
+@media (max-width: 700px) {
+
+    header {
+        padding: 60px 15px 45px;
+    }
+
+    .logo {
+        letter-spacing: -2px;
+    }
+
+    .subtitle {
+        font-size: 10px;
+        letter-spacing: 2px;
+    }
+
+    nav {
+        gap: 6px;
+        padding: 12px;
+    }
+
+    .nav-btn {
+        padding: 9px 12px;
+        font-size: 10px;
+    }
+
+    main {
+        padding: 35px 14px 60px;
+    }
+
+    .stats {
+        grid-template-columns: 1fr;
+    }
+
+    .match {
+        grid-template-columns: 1fr;
+        gap: 7px;
+        padding: 18px;
+    }
+
+    .match-result {
+        text-align: left;
+        margin-top: 4px;
+    }
+
+    .players {
+        grid-template-columns: repeat(2,1fr);
+    }
+
+    .coaches {
+        grid-template-columns: 1fr;
+    }
+}
+
+@media (max-width: 450px) {
+
+    .players {
+        grid-template-columns: 1fr;
+    }
+
+    .player-card {
+        min-height: 190px;
+    }
+
+    .trophy {
+        font-size: 65px;
+    }
+
+    .trophy-title {
+        font-size: 23px;
+    }
+}
+
+/* =========================
+   REDUCED MOTION
+========================= */
+
+@media (prefers-reduced-motion: reduce) {
+
+    *,
+    *::before,
+    *::after {
+        animation-duration: .01ms !important;
+        animation-iteration-count: 1 !important;
+        transition-duration: .01ms !important;
+    }
+}
+</style>
+</head>
+
+<body>
+
+<header>
+    <div class="header-glow"></div>
+
+    <div class="logo">
+        🍒 CHILL CHERRIES
+    </div>
+
+    <div class="subtitle">
+        Esports Team • League of Legends
+    </div>
+</header>
+
+
+<nav>
+
+    <button class="nav-btn active"
+            onclick="showTab('wyniki', this)">
+        🏆 Wyniki
+    </button>
+
+    <button class="nav-btn"
+            onclick="showTab('sklad', this)">
+        👥 Skład
+    </button>
+
+    <button class="nav-btn"
+            onclick="showTab('trenerzy', this)">
+        🎧 Skład trenerski
+    </button>
+
+    <button class="nav-btn"
+            onclick="showTab('gablota', this)">
+        🏆 Gablota
+    </button>
+
+</nav>
+
+
+<main>
+
+<!-- =========================
+     WYNIKI
+========================= -->
+
+<section id="wyniki" class="tab active">
+
+    <h1 class="section-title">
+        Nasze <span>wyniki</span>
+    </h1>
+
+    <p class="section-description">
+        Aktualne mecze Chill Cherries
+    </p>
+
+
+    <div class="stats">
+
+        <div class="stat">
+            <div class="stat-number" id="statMecze">0</div>
+            <div class="stat-label">Mecze</div>
+        </div>
+
+        <div class="stat">
+            <div class="stat-number" id="statWygrane">0</div>
+            <div class="stat-label">Wygrane</div>
+        </div>
+
+        <div class="stat">
+            <div class="stat-number" id="statPrzegrane">0</div>
+            <div class="stat-label">Przegrane</div>
+        </div>
+
+    </div>
+
+
+    <div class="matches" id="listaMeczow"></div>
+
+</section>
+
+
+<!-- =========================
+     SKŁAD
+========================= -->
+
+<section id="sklad" class="tab">
+
+    <h1 class="section-title">
+        Nasz <span>skład</span>
+    </h1>
+
+    <p class="section-description">
+        Piątka reprezentująca Chill Cherries
+    </p>
+
+
+    <div class="players">
+
+        <div class="player-card"
+             style="--accent:#ff4d6d">
+
+            <div class="role">Top</div>
+
+            <div class="player-icon">
+                ⚔️
+            </div>
+
+            <div class="player-name">
+                Wróżka Mateusz
+            </div>
+
+            <div class="player-status">
+                Starting Player
+            </div>
+
+        </div>
+
+
+        <div class="player-card"
+             style="--accent:#38d996">
+
+            <div class="role">Jungler</div>
+
+            <div class="player-icon">
+                🌲
+            </div>
+
+            <div class="player-name">
+                Persh1nG
+            </div>
+
+            <div class="player-status">
+                Starting Player
+            </div>
+
+        </div>
+
+
+        <div class="player-card"
+             style="--accent:#a855f7">
+
+            <div class="role">Mid</div>
+
+            <div class="player-icon">
+                🔮
+            </div>
+
+            <div class="player-name">
+                Dziad
+            </div>
+
+            <div class="player-status">
+                Starting Player
+            </div>
+
+        </div>
+
+
+        <div class="player-card"
+             style="--accent:#38bdf8">
+
+            <div class="role">ADC</div>
+
+            <div class="player-icon">
+                🎯
+            </div>
+
+            <div class="player-name">
+                Krzakowskyy y
+            </div>
+
+            <div class="player-status">
+                Starting Player
+            </div>
+
+        </div>
+
+
+        <div class="player-card"
+             style="--accent:#f6c453">
+
+            <div class="role">Support</div>
+
+            <div class="player-icon">
+                🛡️
+            </div>
+
+            <div class="player-name">
+                Andrey Suarez
+            </div>
+
+            <div class="player-status">
+                Starting Player
+            </div>
+
+        </div>
+
+    </div>
+
+</section>
+
+
+<!-- =========================
+     TRENERZY
+========================= -->
+
+<section id="trenerzy" class="tab">
+
+    <h1 class="section-title">
+        Skład <span>trenerski</span>
+    </h1>
+
+    <p class="section-description">
+        Ludzie stojący za drużyną
+    </p>
+
+
+    <div class="coaches">
+
+        <div class="coach-card">
+
+            <div class="coach-icon">
+                🎧
+            </div>
+
+            <div class="coach-role">
+                Coach
+            </div>
+
+            <div class="coach-name">
+                teainsuru
+            </div>
+
+        </div>
+
+
+        <div class="coach-card">
+
+            <div class="coach-icon">
+                ⚡
+            </div>
+
+            <div class="coach-role">
+                Motywator
+            </div>
+
+            <div class="coach-name">
+                Xynzie
+            </div>
+
+        </div>
+
+    </div>
+
+</section>
+
+
+<!-- =========================
+     GABLOTA
+========================= -->
+
+<section id="gablota" class="tab">
+
+    <h1 class="section-title">
+        <span>Gablota</span>
+    </h1>
+
+    <p class="section-description">
+        Największe osiągnięcia Chill Cherries
+    </p>
+
+
+    <div class="trophy-room">
+
+        <div class="trophy">
+            🏆
+        </div>
+
+        <div class="trophy-title">
+            Tu dopiero się zaczyna...
+        </div>
+
+        <div class="trophy-text">
+            Pierwsze trofea czekają na zdobycie.
+        </div>
+
+        <div class="empty-trophy">
+            Brak trofeów — na razie 👀
+        </div>
+
+    </div>
+
+</section>
+
+</main>
+
+
+<footer>
+    Chill Cherries © 2026
+    <span class="footer-cherry">🍒</span>
+</footer>
+
+
+<script>
+
+/* =========================
+   MECZE
+========================= */
+
+const mecze = [
+
+    {
+        data: "03.09.2026",
+        przeciwnik: "LK",
+        wynik: "2-1"
+    },
+
+    {
+        data: "05.09.2026",
+        przeciwnik: "AA",
+        wynik: "OCZEKIWANIE"
+    }
+
+];
+
+
+/* =========================
+   ZMIANA ZAKŁADEK
+========================= */
+
+function showTab(id, button) {
+
+    document.querySelectorAll(".tab").forEach(tab => {
+        tab.classList.remove("active");
+    });
+
+    document.querySelectorAll(".nav-btn").forEach(btn => {
+        btn.classList.remove("active");
+    });
+
+    const selectedTab = document.getElementById(id);
+
+    if (!selectedTab) {
+        return;
+    }
+
+    selectedTab.classList.add("active");
+    button.classList.add("active");
+
+    window.scrollTo({
+        top: 0,
+        behavior: "smooth"
+    });
+
+    if (id === "wyniki") {
+        renderMatches();
+    }
+}
+
+
+/* =========================
+   RENDEROWANIE MECZÓW
+========================= */
+
+function renderMatches() {
+
+    const container =
+        document.getElementById("listaMeczow");
+
+    if (!container) {
+        return;
+    }
+
+    container.innerHTML = "";
+
+    let meczeRozegrane = 0;
+    let wygrane = 0;
+    let przegrane = 0;
+
+
+    mecze.forEach((mecz, index) => {
+
+        if (
+            !mecz.data ||
+            !mecz.przeciwnik ||
+            !mecz.wynik
+        ) {
+            return;
+        }
+
+
+        const div = document.createElement("div");
+
+        div.className = "match";
+
+        div.style.animationDelay =
+            `${index * 0.08}s`;
+
+
+        /* =========================
+           OCZEKIWANIE
+        ========================= */
+
+        if (
+            mecz.wynik.toUpperCase() === "OCZEKIWANIE"
+        ) {
+
+            div.innerHTML = `
+
+                <div class="match-date">
+                    ${mecz.data}
+                </div>
+
+                <div class="match-opponent">
+                    Chill Cherries
+                    <span class="vs">vs</span>
+                    ${mecz.przeciwnik}
+                </div>
+
+                <div class="match-result waiting">
+                    OCZEKIWANIE
+                </div>
+
+            `;
+
+        }
+
+
+        /* =========================
+           ZAKOŃCZONY MECZ
+        ========================= */
+
+        else {
+
+            const wynik =
+                mecz.wynik.split("-");
+
+            const nasze =
+                Number(wynik[0]);
+
+            const przeciwnika =
+                Number(wynik[1]);
+
+
+            /*
+             * Nie ma remisów.
+             * Wyższy wynik = wygrana.
+             */
+
+            const wygrana =
+                nasze > przeciwnika;
+
+
+            meczeRozegrane++;
+
+
+            if (wygrana) {
+                wygrane++;
+            } else {
+                przegrane++;
+            }
+
+
+            div.innerHTML = `
+
+                <div class="match-date">
+                    ${mecz.data}
+                </div>
+
+                <div class="match-opponent">
+                    Chill Cherries
+                    <span class="vs">vs</span>
+                    ${mecz.przeciwnik}
+                </div>
+
+                <div class="
+                    match-result
+                    ${wygrana ? "win" : "loss"}
+                ">
+
+                    ${mecz.wynik}
+
+                    <div class="result-label">
+                        ${wygrana ? "WYGRANA" : "PRZEGRANA"}
+                    </div>
+
+                </div>
+
+            `;
+
+        }
+
+
+        container.appendChild(div);
+
+    });
+
+
+    animateNumber(
+        "statMecze",
+        meczeRozegrane
+    );
+
+    animateNumber(
+        "statWygrane",
+        wygrane
+    );
+
+    animateNumber(
+        "statPrzegrane",
+        przegrane
+    );
+
+}
+
+
+/* =========================
+   ANIMOWANE LICZNIKI
+========================= */
+
+function animateNumber(elementId, target) {
+
+    const element =
+        document.getElementById(elementId);
+
+    if (!element) {
+        return;
+    }
+
+
+    const current =
+        Number(element.textContent) || 0;
+
+
+    if (current === target) {
+        return;
+    }
+
+
+    const duration = 650;
+
+    const startTime =
+        performance.now();
+
+
+    function update(currentTime) {
+
+        const progress =
+            Math.min(
+                (currentTime - startTime) / duration,
+                1
+            );
+
+
+        const eased =
+            1 - Math.pow(1 - progress, 3);
+
+
+        const value =
+            Math.round(
+                current +
+                (target - current) * eased
+            );
+
+
+        element.textContent = value;
+
+
+        if (progress < 1) {
+            requestAnimationFrame(update);
+        }
+
+    }
+
+
+    requestAnimationFrame(update);
+
+}
+
+
+/* =========================
+   START
+========================= */
+
+document.addEventListener(
+    "DOMContentLoaded",
+    () => {
+        renderMatches();
+    }
+);
+
+</script>
+
+</body>
+</html>
