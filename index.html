@@ -16,7 +16,6 @@
     --purple: #a855f7;
     --blue: #38bdf8;
     --green: #22c55e;
-    --yellow: #facc15;
 }
 
 * {
@@ -37,7 +36,6 @@ body {
     overflow-x: hidden;
 }
 
-/* Tło */
 body::before {
     content: "";
     position: fixed;
@@ -310,10 +308,10 @@ main {
 }
 
 .rank img {
-    width: 30px;
-    height: 30px;
+    width: 32px;
+    height: 32px;
     object-fit: contain;
-    filter: drop-shadow(0 0 6px rgba(255,255,255,.15));
+    filter: drop-shadow(0 0 7px rgba(255,255,255,.15));
 }
 
 /* TRENERZY */
@@ -423,6 +421,7 @@ footer {
 
 /* RESPONSIVE */
 @media (max-width: 700px) {
+
     nav {
         overflow-x: auto;
         justify-content: flex-start;
@@ -458,129 +457,139 @@ footer {
     <button onclick="showTab('sklad', this)">👥 Skład</button>
     <button onclick="showTab('trenerzy', this)">🎧 Skład trenerski</button>
     <button onclick="showTab('gablotka', this)">🏆 Gablota</button>
-</nav><main><!-- WYNIKI -->
-<section id="wyniki" class="tab active">
-    <h2 class="section-title">Wyniki</h2>
+</nav><main><!-- WYNIKI --><section id="wyniki" class="tab active"><h2 class="section-title">Wyniki</h2>
 
-    <div class="stats">
-        <div class="stat">
-            <div class="stat-number" id="matches">0</div>
-            <div class="stat-label">Mecze</div>
-        </div>
+<div class="stats">
 
-        <div class="stat">
-            <div class="stat-number" id="wins">0</div>
-            <div class="stat-label">Wygrane</div>
-        </div>
+    <div class="stat">
+        <div class="stat-number" id="matches">0</div>
+        <div class="stat-label">Mecze</div>
+    </div>
 
-        <div class="stat">
-            <div class="stat-number" id="losses">0</div>
-            <div class="stat-label">Przegrane</div>
+    <div class="stat">
+        <div class="stat-number" id="wins">0</div>
+        <div class="stat-label">Wygrane</div>
+    </div>
+
+    <div class="stat">
+        <div class="stat-number" id="losses">0</div>
+        <div class="stat-label">Przegrane</div>
+    </div>
+
+</div>
+
+<div class="matches" id="matchesList"></div>
+
+</section><!-- SKŁAD --><section id="sklad" class="tab"><h2 class="section-title">Skład</h2>
+
+<div class="players">
+
+    <div class="player">
+        <div class="role">⚔️</div>
+
+        <div class="player-info">
+            <div class="player-name">Mateusz Wróżka</div>
+            <div class="player-role">TOP</div>
+
+            <div class="rank">
+                <img src="https://raw.communitydragon.org/latest/plugins/rcp-fe-lol-static-assets/global/default/ranked-emblem/emblem-master.png" alt="Master">
+                Master
+            </div>
         </div>
     </div>
 
-    <div class="matches" id="matchesList"></div>
-</section>
 
-<!-- SKŁAD -->
-<section id="sklad" class="tab">
-    <h2 class="section-title">Skład</h2>
+    <div class="player">
+        <div class="role">🌲</div>
 
-    <div class="players">
+        <div class="player-info">
+            <div class="player-name">Persh1nG</div>
+            <div class="player-role">JUNGLER</div>
 
-        <div class="player">
-            <div class="role">⚔️</div>
-            <div class="player-info">
-                <div class="player-name">Mateusz Wróżka</div>
-                <div class="player-role">TOP</div>
-                <div class="rank">
-                    <img src="https://ddragon.leagueoflegends.com/cdn/15.18.1/img/profileicon/29.png" alt="Master">
-                    Master
-                </div>
+            <div class="rank">
+                <img src="https://raw.communitydragon.org/latest/plugins/rcp-fe-lol-static-assets/global/default/ranked-emblem/emblem-diamond.png" alt="Diament">
+                Diament
             </div>
-        </div>
-
-        <div class="player">
-            <div class="role">🌲</div>
-            <div class="player-info">
-                <div class="player-name">Persh1nG</div>
-                <div class="player-role">JUNGLER</div>
-                <div class="rank">
-                    <img src="https://raw.communitydragon.org/latest/plugins/rcp-fe-lol-shared-components/global/default/ranked-emblem/diamond.png" alt="Diament">
-                    Diament
-                </div>
-            </div>
-        </div>
-
-        <div class="player">
-            <div class="role">🔮</div>
-            <div class="player-info">
-                <div class="player-name">Dziad</div>
-                <div class="player-role">MID</div>
-                <div class="rank">
-                    <img src="https://raw.communitydragon.org/latest/plugins/rcp-fe-lol-shared-components/global/default/ranked-emblem/diamond.png" alt="Diament">
-                    Diament
-                </div>
-            </div>
-        </div>
-
-        <div class="player">
-            <div class="role">🏹</div>
-            <div class="player-info">
-                <div class="player-name">Krzakowskyy</div>
-                <div class="player-role">ADC</div>
-                <div class="rank">
-                    <img src="https://raw.communitydragon.org/latest/plugins/rcp-fe-lol-shared-components/global/default/ranked-emblem/master.png" alt="Master">
-                    Master
-                </div>
-            </div>
-        </div>
-
-        <div class="player">
-            <div class="role">🛡️</div>
-            <div class="player-info">
-                <div class="player-name">Andrey Suarez</div>
-                <div class="player-role">SUPPORT</div>
-                <div class="rank">
-                    <img src="https://raw.communitydragon.org/latest/plugins/rcp-fe-lol-shared-components/global/default/ranked-emblem/diamond.png" alt="Diament">
-                    Diament
-                </div>
-            </div>
-        </div>
-
-    </div>
-</section>
-
-<!-- TRENERZY -->
-<section id="trenerzy" class="tab">
-    <h2 class="section-title">Skład trenerski</h2>
-
-    <div class="coaches">
-        <div class="coach">
-            <div class="coach-name">teainsuru</div>
-            <div class="coach-role">Coach</div>
-        </div>
-
-        <div class="coach">
-            <div class="coach-name">Xynzie</div>
-            <div class="coach-role">Motywator</div>
         </div>
     </div>
-</section>
 
-<!-- GABLOTA -->
-<section id="gablotka" class="tab">
-    <h2 class="section-title">Gablota</h2>
 
-    <div class="trophy">
-        <div>
-            <div class="trophy-icon">🏆</div>
-            <div class="trophy-text">Tu dopiero się zaczyna...</div>
+    <div class="player">
+        <div class="role">🔮</div>
+
+        <div class="player-info">
+            <div class="player-name">Dziad</div>
+            <div class="player-role">MID</div>
+
+            <div class="rank">
+                <img src="https://raw.communitydragon.org/latest/plugins/rcp-fe-lol-static-assets/global/default/ranked-emblem/emblem-diamond.png" alt="Diament">
+                Diament
+            </div>
         </div>
     </div>
-</section>
 
-</main><footer>
+
+    <div class="player">
+        <div class="role">🏹</div>
+
+        <div class="player-info">
+            <div class="player-name">Krzakowskyy</div>
+            <div class="player-role">ADC</div>
+
+            <div class="rank">
+                <img src="https://raw.communitydragon.org/latest/plugins/rcp-fe-lol-static-assets/global/default/ranked-emblem/emblem-master.png" alt="Master">
+                Master
+            </div>
+        </div>
+    </div>
+
+
+    <div class="player">
+        <div class="role">🛡️</div>
+
+        <div class="player-info">
+            <div class="player-name">Andrey Suarez</div>
+            <div class="player-role">SUPPORT</div>
+
+            <div class="rank">
+                <img src="https://raw.communitydragon.org/latest/plugins/rcp-fe-lol-static-assets/global/default/ranked-emblem/emblem-diamond.png" alt="Diament">
+                Diament
+            </div>
+        </div>
+    </div>
+
+</div>
+
+</section><!-- TRENERZY --><section id="trenerzy" class="tab"><h2 class="section-title">Skład trenerski</h2>
+
+<div class="coaches">
+
+    <div class="coach">
+        <div class="coach-name">teainsuru</div>
+        <div class="coach-role">Coach</div>
+    </div>
+
+    <div class="coach">
+        <div class="coach-name">Xynzie</div>
+        <div class="coach-role">Motywator</div>
+    </div>
+
+</div>
+
+</section><!-- GABLOTA --><section id="gablotka" class="tab"><h2 class="section-title">Gablota</h2>
+
+<div class="trophy">
+
+    <div>
+        <div class="trophy-icon">🏆</div>
+        <div class="trophy-text">
+            Tu dopiero się zaczyna...
+        </div>
+    </div>
+
+</div>
+
+</section></main><footer>
     Chill Cherries © 2026 🍒
 </footer><script>
 
@@ -589,6 +598,7 @@ footer {
 ========================= */
 
 const mecze = [
+
     {
         data: "03.09.2026",
         przeciwnik: "LK",
@@ -596,11 +606,19 @@ const mecze = [
     },
 
     {
-        data: "05.09.2026",
-        przeciwnik: "AA",
-        wynik: "OCZEKIWANIE"
+        data: "10.09.2026",
+        przeciwnik: "LK",
+        wynik: "2-1"
+    },
+
+    {
+        data: "11.09.2026",
+        przeciwnik: "LID",
+        wynik: "2-0"
     }
+
 ];
+
 
 /* =========================
    RENDER WYNIKÓW
@@ -613,50 +631,51 @@ let przegrane = 0;
 
 mecze.forEach(mecz => {
 
-    let klasa = "";
-
-    if (mecz.wynik !== "OCZEKIWANIE") {
-
-        const wynik = mec zwynik = mec zwynik;
-    }
-
     const div = document.createElement("div");
+
     div.className = "match";
 
-    let wynikHTML = "";
+    const czesci = mecz.wynik.split("-");
 
-    if (mecz.wynik === "OCZEKIWANIE") {
-        wynikHTML = `<div class="result-label" style="color: var(--yellow);">OCZEKIWANIE</div>`;
+    let klasa;
+
+    if (parseInt(czesci[0]) > parseInt(czesci[1])) {
+        klasa = "win";
+        wygrane++;
     } else {
-
-        const czesci = mecz.wynik.split("-");
-
-        if (parseInt(czesci[0]) > parseInt(czesci[1])) {
-            klasa = "win";
-            wygrane++;
-        } else {
-            klasa = "loss";
-            przegrane++;
-        }
-
-        wynikHTML = `<div class="result-label ${klasa}">${mecz.wynik}</div>`;
+        klasa = "loss";
+        przegrane++;
     }
 
     div.innerHTML = `
-        <div class="date">${mecz.data}</div>
+        <div class="date">
+            ${mecz.data}
+        </div>
+
         <div class="opponent">
             CHILL CHERRIES
             <span class="vs">vs</span>
             ${mecz.przeciwnik}
         </div>
-        ${wynikHTML}
+
+        <div class="result-label ${klasa}">
+            ${mecz.wynik}
+        </div>
     `;
 
     matchesList.appendChild(div);
+
 });
 
+
+/* =========================
+   STATYSTYKI
+========================= */
+
 document.getElementById("matches").textContent = mecze.length;
+
 document.getElementById("wins").textContent = wygrane;
+
 document.getElementById("losses").textContent = przegrane;
 
 
@@ -675,12 +694,14 @@ function showTab(tabId, button) {
     });
 
     document.getElementById(tabId).classList.add("active");
+
     button.classList.add("active");
 
     window.scrollTo({
         top: 0,
         behavior: "smooth"
     });
+
 }
 
 </script></body>
