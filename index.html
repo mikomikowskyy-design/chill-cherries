@@ -7,7 +7,7 @@
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
 <style>
-:root{--bg:#050506;--card:#0d0d11;--card2:#121218;--white:#f8f8fa;--muted:#8f8f9d;--red:#ff1744;--pink:#ff1593;--lime:#75ff00;--yellow:#ffd000;--cyan:#36d9ff;--line:rgba(255,255,255,.08)}
+:root{--bg:#050506;--card:#0d0d11;--white:#f8f8fa;--muted:#8f8f9d;--red:#ff1744;--pink:#ff1593;--lime:#75ff00;--yellow:#ffd000;--cyan:#36d9ff;--line:rgba(255,255,255,.08)}
 *{box-sizing:border-box;margin:0;padding:0}
 html{scroll-behavior:smooth}
 body{font-family:Inter,Arial,sans-serif;background:var(--bg);color:var(--white);min-height:100vh;overflow-x:hidden}
@@ -17,6 +17,7 @@ body:after{content:"";position:fixed;inset:0;z-index:-4;opacity:.35;background-i
 .g1{background:var(--red);left:-220px;top:20%;animation:move1 14s ease-in-out infinite alternate}
 .g2{background:var(--lime);right:-220px;top:45%;animation:move2 17s ease-in-out infinite alternate}
 .g3{background:var(--pink);left:40%;bottom:-300px;animation:move3 20s ease-in-out infinite alternate}
+
 header{position:relative;text-align:center;padding:82px 20px 52px}
 .logo{font-size:clamp(38px,8vw,72px);font-weight:900;letter-spacing:-4px;line-height:1}
 .logo .cherry{display:inline-block;margin-right:7px;filter:drop-shadow(0 0 16px rgba(255,23,68,.45));animation:cherry 3s ease-in-out infinite}
@@ -24,6 +25,7 @@ header{position:relative;text-align:center;padding:82px 20px 52px}
 .subtitle{margin-top:16px;color:var(--muted);font-size:12px;font-weight:600;letter-spacing:3px;text-transform:uppercase}
 .status{display:inline-flex;align-items:center;gap:8px;margin-top:20px;padding:7px 12px;border:1px solid rgba(117,255,0,.16);border-radius:99px;background:rgba(117,255,0,.04);color:#a7ff70;font-size:11px;font-weight:700}
 .status i{width:7px;height:7px;border-radius:50%;background:var(--lime);box-shadow:0 0 12px var(--lime);animation:pulse 1.7s infinite}
+
 nav{position:sticky;top:0;z-index:50;display:flex;justify-content:center;gap:7px;padding:11px;background:rgba(5,5,6,.72);border-bottom:1px solid var(--line);backdrop-filter:blur(20px);-webkit-backdrop-filter:blur(20px)}
 nav button{position:relative;border:1px solid transparent;background:transparent;color:#8e8e99;padding:11px 17px;border-radius:11px;font:700 13px Inter;cursor:pointer;transition:.3s}
 nav button:after{content:"";position:absolute;bottom:0;left:50%;width:0;height:2px;transform:translateX(-50%);background:linear-gradient(90deg,var(--red),var(--pink),var(--lime));transition:.3s}
@@ -31,6 +33,7 @@ nav button:hover{color:#fff;background:rgba(255,255,255,.035);transform:translat
 nav button:hover:after{width:55%}
 nav button.active{color:#fff;background:rgba(255,23,68,.09);border-color:rgba(255,23,68,.23);box-shadow:0 0 25px rgba(255,23,68,.05)}
 nav button.active:after{width:65%}
+
 main{max-width:1080px;margin:auto;padding:50px 20px 90px}
 .tab{display:none;animation:tab .45s ease}
 .tab.active{display:block}
@@ -38,11 +41,36 @@ main{max-width:1080px;margin:auto;padding:50px 20px 90px}
 h2{font-size:30px;font-weight:900;letter-spacing:-1px}
 h2:after{content:"";display:block;width:58px;height:3px;margin-top:11px;border-radius:5px;background:linear-gradient(90deg,var(--red),var(--pink),var(--lime));box-shadow:0 0 12px rgba(255,23,68,.45)}
 .section-tag{color:#666;font-size:10px;font-weight:800;letter-spacing:2px;text-transform:uppercase}
-.empty{position:relative;min-height:260px;display:flex;align-items:center;justify-content:center;text-align:center;overflow:hidden;border:1px solid var(--line);border-radius:24px;background:linear-gradient(145deg,#101014,#09090b)}
-.empty:before{content:"";position:absolute;width:280px;height:280px;border-radius:50%;background:radial-gradient(circle,rgba(255,23,68,.09),transparent 65%);animation:emptyGlow 5s infinite}
-.empty-icon{position:relative;font-size:52px;opacity:.75;animation:float 3s ease-in-out infinite}
-.empty h3{position:relative;margin-top:15px;font-size:18px}
-.empty p{position:relative;margin-top:7px;color:var(--muted);font-size:12px}
+
+/* WYNIKI */
+.stats{display:grid;grid-template-columns:repeat(3,1fr);gap:17px;margin-bottom:25px}
+.stat{position:relative;overflow:hidden;padding:28px 25px;border:1px solid var(--line);border-radius:22px;background:linear-gradient(145deg,#111116,#09090c);text-align:center;transition:.35s}
+.stat:hover{transform:translateY(-6px);box-shadow:0 20px 45px rgba(0,0,0,.4)}
+.stat:before{content:"";position:absolute;width:130px;height:130px;border-radius:50%;right:-70px;bottom:-70px;filter:blur(20px);opacity:.25}
+.stat.games:before{background:var(--cyan)}
+.stat.wins:before{background:var(--lime)}
+.stat.losses:before{background:var(--red)}
+.stat-number{position:relative;font-size:46px;font-weight:900;line-height:1}
+.stat-label{position:relative;margin-top:9px;color:var(--muted);font-size:11px;font-weight:800;letter-spacing:2px;text-transform:uppercase}
+.stat.games .stat-number{color:var(--cyan)}
+.stat.wins .stat-number{color:var(--lime)}
+.stat.losses .stat-number{color:var(--red)}
+
+.match-table{overflow:hidden;border:1px solid var(--line);border-radius:22px;background:linear-gradient(145deg,#101014,#09090c)}
+.table-head,.match-row{display:grid;grid-template-columns:1.1fr 1.5fr .8fr .9fr;align-items:center}
+.table-head{padding:15px 22px;color:#666;font-size:10px;font-weight:800;letter-spacing:1.8px;text-transform:uppercase;background:rgba(255,255,255,.025);border-bottom:1px solid var(--line)}
+.match-row{padding:19px 22px;border-bottom:1px solid rgba(255,255,255,.055);transition:.3s}
+.match-row:last-child{border-bottom:0}
+.match-row:hover{background:rgba(255,255,255,.025)}
+.match-date{color:var(--muted);font-size:11px;font-weight:700}
+.match-enemy{font-size:14px;font-weight:900}
+.match-score{font-size:23px;font-weight:900}
+.match-result{justify-self:end;padding:7px 12px;border-radius:9px;font-size:10px;font-weight:900;letter-spacing:1px}
+.match-row.win .match-score{color:var(--lime)}
+.match-row.win .match-result{color:var(--lime);background:rgba(117,255,0,.08);border:1px solid rgba(117,255,0,.18)}
+.match-row.loss .match-score{color:var(--red)}
+.match-row.loss .match-result{color:var(--red);background:rgba(255,23,68,.08);border:1px solid rgba(255,23,68,.18)}
+
 .players{display:grid;grid-template-columns:repeat(2,1fr);gap:17px}
 .player{position:relative;display:flex;align-items:center;gap:19px;min-height:165px;padding:24px;overflow:hidden;border:1px solid var(--line);border-radius:22px;background:linear-gradient(145deg,rgba(17,17,22,.98),rgba(8,8,11,.98));transition:.4s cubic-bezier(.2,.8,.2,1)}
 .player:before{content:"";position:absolute;width:230px;height:230px;right:-150px;bottom:-150px;border-radius:50%;background:radial-gradient(circle,rgba(255,23,68,.2),transparent 65%);transition:.5s}
@@ -58,11 +86,12 @@ h2:after{content:"";display:block;width:58px;height:3px;margin-top:11px;border-r
 .rank{display:inline-flex;align-items:center;gap:9px;margin-top:11px;padding:5px 12px 5px 5px;border-radius:12px;font-size:12px;font-weight:900;transition:.35s}
 .rank img{width:52px;height:52px;object-fit:contain;filter:drop-shadow(0 0 9px rgba(255,255,255,.18));transition:.35s}
 .player:hover .rank img{transform:scale(1.1) rotate(3deg)}
-.master{color:#d09aff;background:rgba(168,85,247,.07);border:1px solid rgba(168,85,247,.28);box-shadow:inset 0 0 20px rgba(168,85,247,.025)}
-.diamond{color:#69e9ff;background:rgba(56,189,248,.06);border:1px solid rgba(56,189,248,.25);box-shadow:inset 0 0 20px rgba(56,189,248,.025)}
+.master{color:#d09aff;background:rgba(168,85,247,.07);border:1px solid rgba(168,85,247,.28)}
+.diamond{color:#69e9ff;background:rgba(56,189,248,.06);border:1px solid rgba(56,189,248,.25)}
 .socials{display:flex;gap:6px;margin-top:9px}
 .social{width:29px;height:29px;display:flex;align-items:center;justify-content:center;border:1px solid rgba(255,255,255,.07);border-radius:9px;background:rgba(255,255,255,.035);color:#858590;text-decoration:none;font-size:12px;font-weight:800;transition:.25s}
 .social:hover{color:#fff;background:rgba(255,23,68,.12);border-color:rgba(255,23,68,.3);transform:translateY(-3px)}
+
 .coaches{display:grid;grid-template-columns:repeat(2,1fr);gap:17px}
 .coach{position:relative;padding:28px;min-height:130px;overflow:hidden;border:1px solid var(--line);border-radius:22px;background:linear-gradient(145deg,#111116,#09090c);transition:.35s}
 .coach:before{content:"🎧";position:absolute;right:22px;top:22px;font-size:42px;opacity:.1;transition:.35s}
@@ -70,6 +99,7 @@ h2:after{content:"";display:block;width:58px;height:3px;margin-top:11px;border-r
 .coach:hover:before{opacity:.22;transform:rotate(8deg) scale(1.1)}
 .coach-name{font-size:19px;font-weight:900}
 .coach-role{margin-top:7px;font-size:11px;font-weight:800;letter-spacing:1.5px;text-transform:uppercase;background:linear-gradient(90deg,var(--pink),var(--yellow));background-clip:text;-webkit-background-clip:text;color:transparent}
+
 .trophy{position:relative;height:310px;display:flex;align-items:center;justify-content:center;text-align:center;overflow:hidden;border:1px solid var(--line);border-radius:25px;background:radial-gradient(circle at center,rgba(255,208,0,.08),transparent 45%),linear-gradient(145deg,#111115,#08080b)}
 .trophy:before,.trophy:after{content:"";position:absolute;border:1px solid rgba(255,208,0,.07);border-radius:50%;animation:ring 5s ease-in-out infinite}
 .trophy:before{width:250px;height:250px}
@@ -77,24 +107,47 @@ h2:after{content:"";display:block;width:58px;height:3px;margin-top:11px;border-r
 .trophy-icon{position:relative;font-size:70px;filter:drop-shadow(0 0 18px rgba(255,208,0,.3));animation:float 3s infinite}
 .trophy h3{position:relative;margin-top:17px;font-size:18px}
 .trophy p{position:relative;margin-top:7px;color:var(--muted);font-size:12px}
+
 footer{text-align:center;padding:32px 20px;color:#555;font-size:11px;border-top:1px solid var(--line)}
 footer b{background:linear-gradient(90deg,var(--red),var(--pink),var(--lime));background-clip:text;-webkit-background-clip:text;color:transparent}
+
 @keyframes cherry{0%,100%{transform:translateY(0) rotate(0)}50%{transform:translateY(-8px) rotate(4deg)}}
 @keyframes float{0%,100%{transform:translateY(0)}50%{transform:translateY(-9px)}}
 @keyframes gradient{0%{background-position:0% 50%}100%{background-position:300% 50%}}
 @keyframes tab{from{opacity:0;transform:translateY(15px)}to{opacity:1;transform:none}}
 @keyframes pulse{50%{opacity:.35;transform:scale(.7)}}
-@keyframes emptyGlow{50%{transform:scale(1.2);opacity:.6}}
 @keyframes ring{0%,100%{transform:scale(.85);opacity:.3}50%{transform:scale(1);opacity:.8}}
 @keyframes move1{to{transform:translate(220px,100px)}}
 @keyframes move2{to{transform:translate(-180px,-100px)}}
 @keyframes move3{to{transform:translate(130px,-100px)}}
+
 @media(max-width:700px){
-header{padding:55px 15px 40px}.logo{letter-spacing:-2px}nav{justify-content:flex-start;overflow-x:auto;scrollbar-width:none}nav::-webkit-scrollbar{display:none}nav button{white-space:nowrap}main{padding:35px 15px 65px}.players,.coaches{grid-template-columns:1fr}.player{min-height:145px;padding:19px}.role{width:59px;height:59px;font-size:25px}.rank img{width:46px;height:46px}.name{font-size:16px}.empty{min-height:220px}}
+header{padding:55px 15px 40px}.logo{letter-spacing:-2px}
+nav{justify-content:flex-start;overflow-x:auto;scrollbar-width:none}
+nav::-webkit-scrollbar{display:none}
+nav button{white-space:nowrap}
+main{padding:35px 15px 65px}
+.stats{grid-template-columns:1fr 1fr}.stat:first-child{grid-column:1/-1}
+.stat-number{font-size:38px}
+.players,.coaches{grid-template-columns:1fr}
+.player{min-height:145px;padding:19px}
+.role{width:59px;height:59px;font-size:25px}
+.rank img{width:46px;height:46px}
+.name{font-size:16px}
+.table-head{display:none}
+.match-row{grid-template-columns:1fr auto;gap:9px;padding:17px}
+.match-date{grid-column:1}
+.match-enemy{grid-column:1}
+.match-score{grid-column:2;grid-row:1/3}
+.match-result{grid-column:1;justify-self:start}
+}
 </style>
 </head>
+
 <body>
-<div class="glow g1"></div><div class="glow g2"></div><div class="glow g3"></div>
+<div class="glow g1"></div>
+<div class="glow g2"></div>
+<div class="glow g3"></div>
 
 <header>
 <div class="logo"><span class="cherry">🍒</span><span class="name">CHILL CHERRIES</span></div>
@@ -112,9 +165,34 @@ header{padding:55px 15px 40px}.logo{letter-spacing:-2px}nav{justify-content:flex
 <main>
 
 <section id="wyniki" class="tab active">
-<div class="title-row"><h2>Wyniki</h2><span class="section-tag">Match history</span></div>
-<div class="empty">
-<div><div class="empty-icon">🍒</div><h3>Brak rozegranych meczów</h3><p>Historia spotkań pojawi się tutaj.</p></div>
+<div class="title-row">
+<h2>Wyniki</h2>
+<span class="section-tag">Match history</span>
+</div>
+
+<div class="stats">
+<div class="stat games">
+<div class="stat-number" id="liczbaMeczow">0</div>
+<div class="stat-label">Mecze</div>
+</div>
+<div class="stat wins">
+<div class="stat-number" id="liczbaWygranych">0</div>
+<div class="stat-label">Wygrane</div>
+</div>
+<div class="stat losses">
+<div class="stat-number" id="liczbaPrzegranych">0</div>
+<div class="stat-label">Przegrane</div>
+</div>
+</div>
+
+<div class="match-table">
+<div class="table-head">
+<span>Data</span>
+<span>Przeciwnik</span>
+<span>Wynik</span>
+<span>Status</span>
+</div>
+<div id="matchList"></div>
 </div>
 </section>
 
@@ -145,7 +223,13 @@ header{padding:55px 15px 40px}.logo{letter-spacing:-2px}nav{justify-content:flex
 
 <section id="gablota" class="tab">
 <div class="title-row"><h2>Gablota</h2><span class="section-tag">Trophies</span></div>
-<div class="trophy"><div><div class="trophy-icon">🏆</div><h3>Tu dopiero się zaczyna...</h3><p>Pierwsze trofea czekają na swoją historię.</p></div></div>
+<div class="trophy">
+<div>
+<div class="trophy-icon">🏆</div>
+<h3>Tu dopiero się zaczyna...</h3>
+<p>Pierwsze trofea czekają na swoją historię.</p>
+</div>
+</div>
 </section>
 
 </main>
@@ -153,13 +237,45 @@ header{padding:55px 15px 40px}.logo{letter-spacing:-2px}nav{justify-content:flex
 <footer><b>🍒 CHILL CHERRIES</b> © 2026</footer>
 
 <script>
-function show(id,btn){
-document.querySelectorAll('.tab').forEach(x=>x.classList.remove('active'));
-document.querySelectorAll('nav button').forEach(x=>x.classList.remove('active'));
-document.getElementById(id).classList.add('active');
-btn.classList.add('active');
-window.scrollTo({top:0,behavior:'smooth'});
+/* DODAWANIE MECZÓW — TUTAJ */
+const mecze=[
+{data:"15.09.2026",przeciwnik:"SB",wynik:"2-0"}
+];
+
+function pokazMecze(){
+let wygrane=0,przegrane=0;
+
+mecze.forEach(m=>{
+const[a,b]=m.wynik.split("-").map(Number);
+a>b?wygrane++:przegrane++;
+});
+
+document.getElementById("liczbaMeczow").textContent=mecze.length;
+document.getElementById("liczbaWygranych").textContent=wygrane;
+document.getElementById("liczbaPrzegranych").textContent=przegrane;
+
+document.getElementById("matchList").innerHTML=mecze.map(m=>{
+const[a,b]=m.wynik.split("-").map(Number);
+const wygrana=a>b;
+return `
+<div class="match-row ${wygrana?"win":"loss"}">
+<span class="match-date">${m.data}</span>
+<span class="match-enemy">🍒 CHILL CHERRIES vs ${m.przeciwnik}</span>
+<span class="match-score">${m.wynik}</span>
+<span class="match-result">${wygrana?"WYGRANA":"PRZEGRANA"}</span>
+</div>`;
+}).join("");
 }
+
+function show(id,btn){
+document.querySelectorAll(".tab").forEach(x=>x.classList.remove("active"));
+document.querySelectorAll("nav button").forEach(x=>x.classList.remove("active"));
+document.getElementById(id).classList.add("active");
+btn.classList.add("active");
+window.scrollTo({top:0,behavior:"smooth"});
+}
+
+pokazMecze();
 </script>
 </body>
 </html>
