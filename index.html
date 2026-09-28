@@ -123,6 +123,9 @@ h2:after{content:"";display:block;width:58px;height:3px;margin-top:11px;border-r
 .coach:hover{transform:translateY(-4px);border-color:rgba(255,21,147,.22);box-shadow:0 16px 38px rgba(0,0,0,.34)}
 .coach:hover:before{opacity:.22;transform:rotate(8deg) scale(1.1)}
 .coach-name{font-size:19px;font-weight:900}
+.orientation-flag{display:inline-block;width:18px;height:12px;margin-left:8px;vertical-align:1px;border:1px solid rgba(255,255,255,.22);border-radius:2px;box-shadow:0 0 9px rgba(255,255,255,.12)}
+.orientation-flag.lgbt{width:auto;height:auto;border:0;border-radius:0;box-shadow:none;font-size:16px;line-height:1}
+.orientation-flag.straight{background:repeating-linear-gradient(to bottom,#111 0 2px,#f5f5f5 2px 4px)}
 .coach-role{margin-top:7px;font-size:11px;font-weight:800;letter-spacing:1.5px;text-transform:uppercase;background:linear-gradient(90deg,var(--pink),var(--yellow));background-clip:text;-webkit-background-clip:text;color:transparent}
 
 .trophy{position:relative;height:310px;display:flex;align-items:center;justify-content:center;text-align:center;overflow:hidden;border:1px solid rgba(255,255,255,.09);border-radius:22px;background:radial-gradient(circle at center,rgba(255,208,0,.06),transparent 48%),linear-gradient(145deg,#111115,#08080b)}
@@ -253,8 +256,8 @@ main{padding:35px 15px 65px}
 <section id="trenerzy" class="tab">
 <div class="title-row"><h2>Skład trenerski</h2><span class="section-tag">Staff</span></div>
 <div class="coaches">
-<div class="coach"><div class="coach-name">teainsuru</div><div class="coach-role">Coach</div></div>
-<div class="coach"><div class="coach-name">Xynzie</div><div class="coach-role">Motywator</div></div>
+<div class="coach"><div class="coach-name">teainsuru <span class="orientation-flag lgbt" role="img" aria-label="Flaga LGBT">🏳️‍🌈</span></div><div class="coach-role">Coach</div></div>
+<div class="coach"><div class="coach-name">Xynzie <span class="orientation-flag straight" role="img" aria-label="Flaga straight" title="Straight"></span></div><div class="coach-role">Motywator</div></div>
 </div>
 </section>
 
